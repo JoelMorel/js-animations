@@ -3,25 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body>
+
+  <body data-barba="wrapper">
+    <div class="loading-bg"></div>
     <header>
       <div class="logo">
-        ConnectMate
+        <a href="index.html">ConnectMate</a>
       </div>
       <div class="menu">
         <ul>
           <li>
-            <a href="#">Product</a>
+            <a href="about.html">About</a>
           </li>
           <li>
-            <a href="#">Resources</a>
+            <a href="gallery.html">Gallery</a>
           </li>
           <li>
-            <a href="#">Contact</a>
+            <a href="contact.html">Contact</a>
           </li>
           <li>
             <a href="#" class="menu-btn">Sign Up</a>
@@ -30,34 +32,38 @@
       </div>
     </header>
 
-    <div class="container">
-      <section id="home">
-        <div class="info-section">
-          <h1>Connect With Friends.</h1>
-          <h4>
-            Connect with old friends and meet new ones all in one secure place.
-          </h4>
-          <div class="call-actions">
-            <a href="#" class="action-btn">Join Now</a>
-            <a href="#" class="action-ghost-btn">More Info</a>
+    <main data-barba="container" data-barba-namespace="home">
+      <div class="container">
+        <section id="home">
+          <div class="info-section">
+            <h1>Connect With Friends.</h1>
+            <h4>
+              Connect with old friends and meet new ones all in one secure
+              place.
+            </h4>
+            <div class="call-actions">
+              <a href="#" class="action-btn">Join Now</a>
+              <a href="#" class="action-ghost-btn">More Info</a>
+            </div>
           </div>
-        </div>
-        <div class="photos">
-          <img
-            class="girl"
-            src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-          />
-          <img
-            class="boy"
-            src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-          />
-          <div class="shape1"></div>
-        </div>
-        <div class="shape2"></div>
-        <div class="shape3"></div>
-      </section>
-    </div>
+          <div class="photos">
+            <img
+              class="back"
+              src="https://i.pinimg.com/originals/ce/c3/b5/cec3b52705dc2257cd6130aae36d462c.jpg"
+            />
+            <img
+              class="front"
+              src="https://images.squarespace-cdn.com/content/5890f6f95016e1497f6d425e/1493495428971-ZKVYTEAUD6K5L2GI0Z9D/Neda+Vassey_Realtor+Headshot_Bellevue+Photographer+Studio+B?content-type=image%2Fjpeg"
+            />
+            <div class="shape1"></div>
+          </div>
+          <div class="shape2"></div>
+          <div class="shape3"></div>
+        </section>
+      </div>
+    </main>
 
+    <script src="https://unpkg.com/@barba/core"></script>
     <script src="js/gsap.min.js"></script>
     <script src="js/CustomEase.min.js"></script>
     <script src="js/app.js"></script>

@@ -4,21 +4,34 @@
   font-family: "Manrope", sans-serif;
   box-sizing: border-box;
 }
-html,
-body {
+html {
   font-family: "Manrope", sans-serif;
-  background-image: linear-gradient(
-    to right top,
-    #8e27ff,
-    #7b21fa,
-    #651bf5,
-    #4b16f0,
-    #2512eb
-  );
+
   height: 100vh;
   width: 100%;
   overflow-x: hidden;
 }
+body {
+  background: rgb(241, 77, 116);
+  background-image: linear-gradient(
+    114deg,
+    rgba(241, 77, 116, 1) 0%,
+    rgba(254, 101, 89, 1) 93%
+  );
+  padding-bottom: 50px;
+}
+
+.loading-bg {
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vh;
+
+  transform: translate(0, 100%);
+}
+
 header {
   color: white;
   display: flex;
@@ -30,6 +43,10 @@ header {
 }
 header .logo {
   font-weight: 700;
+}
+header .logo a {
+  color: white;
+  text-decoration: none;
 }
 header .menu ul {
   display: flex;
@@ -103,7 +120,7 @@ header .menu li a {
 }
 .action-btn {
   background: white;
-  color: #8e27ff;
+  color: #f14d74;
   margin-right: 20px;
 }
 .action-ghost-btn {
@@ -116,19 +133,21 @@ header .menu li a {
   position: relative;
   height: 400px;
 }
-#home .photos .girl {
+#home .photos .back {
   position: absolute;
   width: 400px;
   height: 600px;
+  border-radius: 100px;
   z-index: 1;
   transform: translate3d(0, -200px, 0);
-  object-fit: cover;
-  object-position: top;
+  /* object-fit: cover;
+  object-position: top; */
 }
-#home .photos .boy {
+#home .photos .front {
   position: absolute;
   width: 400px;
   height: 600px;
+  border-radius: 100px;
   z-index: 2;
   transform: translate3d(300px, 100px, 0);
 }
@@ -163,4 +182,49 @@ header .menu li a {
   transform: translate3d(0px, 300px, 0);
   border: 1px dashed white;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+#gallery {
+}
+#gallery .content-area {
+  min-height: calc(100vh - 90px);
+}
+#gallery .white-bg {
+  background: white;
+  padding: 20px;
+}
+#gallery .white-bg h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+#gallery .white-bg ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+#gallery .white-bg ul li {
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+#gallery .white-bg ul li .hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;
+}
+#gallery .white-bg ul li:hover .hover-img {
+  transform: translate(0, 100%);
+}
+#gallery .white-bg img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
 }
