@@ -115,6 +115,45 @@ var loadingEnter = function loadingEnter() {
   });
 };
 
+var aboutEnter = function aboutEnter() {
+  var timeline = gsap.timeline();
+  timeline.fromTo("h1", {
+    x: -500,
+    opacity: 0
+  }, {
+    x: 0,
+    opacity: 1,
+    duration: 0.4
+  });
+};
+
+var contactEnter = function contactEnter() {
+  var timeline = gsap.timeline();
+  timeline.fromTo("h1", {
+    x: -500,
+    opacity: 0
+  }, {
+    x: 0,
+    opacity: 1,
+    duration: 0.4
+  });
+};
+
+var galleryEnter = function galleryEnter() {
+  var timeline = gsap.timeline();
+  timeline.fromTo(".white-bg ul li", {
+    y: 50,
+    opacity: 0
+  }, {
+    y: 0,
+    opacity: 1,
+    duration: 0.4,
+    stagger: 0.2,
+    ease: "power1.inOut"
+  });
+};
+
+galleryEnter();
 barba.init({
   sync: true,
   transitions: [{
@@ -168,5 +207,99 @@ barba.init({
         }
       });
     }
+  }, {
+    name: "gallery-transition",
+    from: {
+      namespace: ["home", "about"]
+    },
+    to: {
+      namespace: ["gallery"]
+    },
+    leave: function leave(data) {
+      var done;
+      return regeneratorRuntime.async(function leave$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              done = this.async();
+              loadingLeave();
+              _context4.next = 4;
+              return regeneratorRuntime.awrap(delay(1500));
+
+            case 4:
+              done();
+
+            case 5:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, null, this);
+    },
+    enter: function enter(data) {
+      return regeneratorRuntime.async(function enter$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              loadingEnter();
+              galleryEnter();
+
+            case 2:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      });
+    },
+    once: function once(data) {
+      return regeneratorRuntime.async(function once$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              initPage();
+
+            case 1:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      });
+    }
+  }],
+  views: [{
+    namespace: "about",
+    afterEnter: function afterEnter(data) {
+      //loadingEnter();
+      aboutEnter();
+    }
+  }, {
+    namespace: "contact",
+    afterEnter: function afterEnter(data) {
+      //loadingEnter();
+      contactEnter();
+    }
+  }, {
+    namespace: "gallery",
+    afterEnter: function afterEnter(data) {
+      loadingEnter();
+      galleryEnter();
+    }
   }]
 });
+/* ScrollMagic Animations */
+
+var timelineServicesScroll = new gsap.timeline({});
+timelineServicesScroll.fromTo("#services", {
+  x: "100%"
+}, {
+  x: 0
+});
+var servicesElement = document.querySelector("#services");
+var homeController = new ScrollMagic.Controller();
+var servicesScene = new ScrollMagic.Scene({
+  triggerElement: "#services",
+  triggerHook: 1,
+  offet: 500,
+  reverse: false,
+  duration: servicesElement.offsetHeight
+}).setTween(timelineServicesScroll).addIndicators().addTo(homeController);

@@ -179,6 +179,60 @@ const loadingEnter = () => {
   );
 };
 
+const aboutEnter = () => {
+  let timeline = gsap.timeline();
+
+  timeline.fromTo(
+    "h1",
+    {
+      x: -500,
+      opacity: 0,
+    },
+    {
+      x: 0,
+      opacity: 1,
+      duration: 0.4,
+    }
+  );
+};
+
+const contactEnter = () => {
+  let timeline = gsap.timeline();
+
+  timeline.fromTo(
+    "h1",
+    {
+      x: -500,
+      opacity: 0,
+    },
+    {
+      x: 0,
+      opacity: 1,
+      duration: 0.4,
+    }
+  );
+};
+
+const galleryEnter = () => {
+  let timeline = gsap.timeline();
+
+  timeline.fromTo(
+    ".white-bg ul li",
+    {
+      y: 50,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.4,
+      stagger: 0.2,
+      ease: "power1.inOut",
+    }
+  );
+};
+galleryEnter();
+
 barba.init({
   sync: true,
   transitions: [
@@ -198,5 +252,78 @@ barba.init({
         initPage();
       },
     },
+    {
+      name: "gallery-transition",
+      from: {
+        namespace: ["home", "about"],
+      },
+      to: {
+        namespace: ["gallery"],
+      },
+
+      async leave(data) {
+        const done = this.async();
+        loadingLeave();
+        await delay(1500);
+        done();
+      },
+      async enter(data) {
+        loadingEnter();
+        galleryEnter();
+      },
+      async once(data) {
+        initPage();
+      },
+    },
+  ],
+  views: [
+    {
+      namespace: "about",
+      afterEnter(data) {
+        //loadingEnter();
+        aboutEnter();
+      },
+    },
+    {
+      namespace: "contact",
+      afterEnter(data) {
+        //loadingEnter();
+        contactEnter();
+      },
+    },
+    {
+      namespace: "gallery",
+      afterEnter(data) {
+        loadingEnter();
+        galleryEnter();
+      },
+    },
   ],
 });
+
+/* ScrollMagic Animations */
+
+const timelineServicesScroll = new gsap.timeline({});
+
+timelineServicesScroll.fromTo(
+  "#services",
+  {
+    x: "100%",
+  },
+  {
+    x: 0,
+  }
+);
+
+const servicesElement = document.querySelector("#services");
+let homeController = new ScrollMagic.Controller();
+let servicesScene = new ScrollMagic.Scene({
+  triggerElement: "#services",
+  triggerHook: 1,
+  offet: 500,
+  reverse: false,
+  duration: servicesElement.offsetHeight,
+})
+  .setTween(timelineServicesScroll)
+  .addIndicators()
+  .addTo(homeController);
